@@ -184,6 +184,26 @@
     overflow-x: auto;
   }
 
+  /* FILE LINK */
+  a.file-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--brass-light);
+    text-decoration: none;
+    border: 1px solid rgba(192,143,85,0.35);
+    padding: 7px 12px;
+    border-radius: 4px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  a.file-link:hover {
+    border-color: var(--brass-light);
+    background: rgba(156,107,48,0.1);
+  }
+
   /* SENSITIVITY TABLE */
   table.sens-table {
     width: 100%;
@@ -258,33 +278,14 @@
 <div class="wrap">
 
   <header class="hero">
-    <p class="eyebrow-num">Residential Credit &amp; Structured Finance</p>
     <h1 class="name">Charlie Hodges</h1>
-    <p class="role">
-      MSF, Boston College — building toward a career in residential mortgage credit and
-      structured finance. This is a working log of real modeling and analysis, not a résumé
-      restated — actual pricing frameworks, valuation work, and research I've built.
-    </p>
+    <p class="role">MSF, Boston College</p>
     <div class="hero-links">
       <a href="mailto:hodgescharlie0@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/charlie-hodges" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/charlie-hodges-cth03/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="#projects">Projects ↓</a>
     </div>
   </header>
-
-  <section class="about">
-    <p>
-      I focus on residential whole loan credit — how non-performing loan pools get priced,
-      how cure and liquidation outcomes are modeled, and how financing and securitization
-      shape the way capital moves through this market. My background is in wealth management
-      and structured products, and I'm applying that same instinct — matching risk to
-      return — to residential credit specifically.
-    </p>
-    <p>
-      Everything below is real work: models I've actually built and stress-tested, not
-      illustrative filler.
-    </p>
-  </section>
 
   <section class="projects" id="projects">
     <h2 class="section-title">Projects</h2>
@@ -314,6 +315,7 @@
         Present Value = (Cured + Liquidated) ÷ (1 + Discount Rate)^Years<br>
         Decision = Present Value vs. Purchase Price
       </div>
+      <a class="file-link" href="NPL_Pool_Model.xlsx" download>↓ Download Excel model</a>
     </div>
 
     <div class="project">
@@ -323,12 +325,8 @@
       </div>
       <p class="project-desc">
         A five-year leveraged buyout model on a hypothetical software company — $150M entry
-        EBITDA at an 8.0x entry multiple, financed at 5.5x leverage. The model builds a full
-        debt paydown schedule (EBITDA growing 6% annually, with 40% of EBITDA converted to
-        free cash flow used to pay down debt each year), then values the exit at the same
-        8.0x multiple to compute sponsor returns. The result — a 2.74x MOIC and roughly a
-        22% IRR — lands squarely in the range real private equity sponsors target, which is
-        a good sanity check that the mechanics are sound, not just internally consistent.
+        EBITDA at an 8.0x entry multiple, financed at 5.5x leverage. Builds a full debt
+        paydown schedule and exit valuation to compute sponsor returns.
       </p>
       <div class="tags">
         <span class="tag">LBO</span>
@@ -344,6 +342,10 @@
         Exit EV = Year 5 EBITDA × Exit Multiple | Exit Equity = Exit EV − Year 5 Ending Debt<br>
         MOIC = Exit Equity ÷ Entry Equity | IRR = MOIC^(1/Years) − 1
       </div>
+      <p class="sens-note" style="margin-top:14px;">
+        Base case: 2.74x MOIC, ~22% IRR.
+      </p>
+      <a class="file-link" href="LBO_Model.xlsx" download>↓ Download Excel model</a>
 
       <table class="sens-table">
         <caption>IRR sensitivity — exit multiple × annual EBITDA growth rate</caption>
@@ -375,11 +377,8 @@
         A five-year discounted cash flow model built on Apple's FY2025 financials — revenue
         growth decelerating from 7.0% to 4.5%, FCF margin expanding from 24.0% to 25.0% as
         Services mix grows, and a WACC derived from CAPM blended with Apple's actual capital
-        structure. The model implies a fair value well below the current trading price,
-        which is a genuinely useful result in itself — it shows where the market's
-        assumptions (AI-driven growth, continued buybacks reducing share count, multiple
-        expansion) diverge from a conservative, organic-growth-only DCF, rather than forcing
-        the model to match the stock price.
+        structure. Implies a fair value of $124.61 against a $336.13 market price — the gap
+        reflects growth and buyback assumptions this conservative model doesn't capture.
       </p>
       <div class="tags">
         <span class="tag">DCF</span>
@@ -395,6 +394,7 @@
         Equity Value = ΣPV(FCF) + PV(Terminal Value) − Net Debt<br>
         Implied Share Price = Equity Value ÷ Shares Outstanding
       </div>
+      <a class="file-link" href="Apple_DCF_Model.xlsx" download>↓ Download Excel model</a>
     </div>
 
   </section>

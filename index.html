@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Charlie Hodges — Finance Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14213D;
+    --ink-deep: #0E1830;
+    --paper: #F2EEE3;
+    --paper-dim: #E7E1D2;
+    --brass: #9C6B30;
+    --brass-light: #C08F55;
+    --slate: #5B6472;
+    --line: rgba(20, 33, 61, 0.14);
+    --line-dark: rgba(242, 238, 227, 0.16);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg-body: var(--ink);
+    }
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* HERO */
+  header.hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .eyebrow-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-light);
+    letter-spacing: 0.04em;
+    margin: 0 0 18px;
+  }
+  h1.name {
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(38px, 7vw, 58px);
+    line-height: 1.05;
+    margin: 0 0 20px;
+    color: var(--paper);
+  }
+  p.role {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(242,238,227,0.72);
+    max-width: 52ch;
+    margin: 0 0 32px;
+  }
+  .hero-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hero-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192,143,85,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.15s ease;
+  }
+  .hero-links a:hover { border-color: var(--brass-light); }
+
+  /* ABOUT */
+  section.about {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  section.about p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(242,238,227,0.8);
+    max-width: 62ch;
+    margin: 0 0 16px;
+  }
+  section.about p:last-child { margin-bottom: 0; }
+
+  /* PROJECTS */
+  section.projects { padding: 56px 0; }
+  h2.section-title {
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 500;
+    font-size: 26px;
+    margin: 0 0 8px;
+    color: var(--paper);
+  }
+  p.section-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--slate);
+    margin: 0 0 40px;
+  }
+
+  .project {
+    padding: 32px 0;
+    border-top: 1px solid var(--line-dark);
+  }
+  .project:last-child { padding-bottom: 0; }
+
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .project-title {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+  }
+  .status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .status.done { color: #C9D6A8; background: rgba(150,180,90,0.14); }
+  .status.progress { color: var(--brass-light); background: rgba(156,107,48,0.16); }
+
+  .project-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(242,238,227,0.72);
+    max-width: 62ch;
+    margin: 0 0 16px;
+  }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--slate);
+    border: 1px solid var(--line-dark);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .project-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192,143,85,0.4);
+  }
+  .project-link:hover { border-color: var(--brass-light); }
+
+  .methodology {
+    margin-top: 18px;
+    padding: 18px 20px;
+    background: rgba(242,238,227,0.04);
+    border-left: 2px solid var(--brass);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    line-height: 2.1;
+    color: rgba(242,238,227,0.65);
+    overflow-x: auto;
+  }
+
+  /* SENSITIVITY TABLE */
+  table.sens-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+  }
+  table.sens-table caption {
+    text-align: left;
+    color: var(--slate);
+    font-size: 11px;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  table.sens-table th, table.sens-table td {
+    border: 1px solid var(--line-dark);
+    padding: 8px 10px;
+    text-align: center;
+    color: rgba(242,238,227,0.75);
+  }
+  table.sens-table thead th {
+    color: var(--brass-light);
+    font-weight: 500;
+    background: rgba(242,238,227,0.03);
+  }
+  table.sens-table tbody th {
+    color: var(--brass-light);
+    font-weight: 500;
+    text-align: left;
+    background: rgba(242,238,227,0.03);
+  }
+  table.sens-table tr.sens-base td, table.sens-table tr.sens-base th {
+    color: var(--paper);
+  }
+  table.sens-table td.sens-hit {
+    background: rgba(156,107,48,0.22);
+    color: var(--paper);
+    font-weight: 600;
+  }
+  p.sens-note {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(242,238,227,0.6);
+    margin: 14px 0 0;
+    max-width: 62ch;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 0 72px;
+    border-top: 1px solid var(--line-dark);
+    margin-top: 24px;
+  }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--slate);
+    margin: 0;
+  }
+  footer a { color: var(--brass-light); }
+
+  @media (max-width: 520px) {
+    header.hero { padding: 64px 0 48px; }
+    .wrap { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow-num">Residential Credit &amp; Structured Finance</p>
+    <h1 class="name">Charlie Hodges</h1>
+    <p class="role">
+      MSF, Boston College — building toward a career in residential mortgage credit and
+      structured finance. This is a working log of real modeling and analysis, not a résumé
+      restated — actual pricing frameworks, valuation work, and research I've built.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:hodgescharlie0@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/charlie-hodges" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#projects">Projects ↓</a>
+    </div>
+  </header>
+
+  <section class="about">
+    <p>
+      I focus on residential whole loan credit — how non-performing loan pools get priced,
+      how cure and liquidation outcomes are modeled, and how financing and securitization
+      shape the way capital moves through this market. My background is in wealth management
+      and structured products, and I'm applying that same instinct — matching risk to
+      return — to residential credit specifically.
+    </p>
+    <p>
+      Everything below is real work: models I've actually built and stress-tested, not
+      illustrative filler.
+    </p>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">IN PROGRESS — UPDATED REGULARLY</p>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">NPL Pool Valuation Model</h3>
+        <span class="status done">Built</span>
+      </div>
+      <p class="project-desc">
+        A working Excel model that prices a non-performing residential loan pool by
+        splitting expected outcomes into cured and liquidated segments, applying
+        distress-sale haircuts and disposition costs to the liquidated portion, and
+        discounting both back to present value against the seller's asking price.
+      </p>
+      <div class="tags">
+        <span class="tag">Excel</span>
+        <span class="tag">NPL Pricing</span>
+        <span class="tag">DCF</span>
+        <span class="tag">Whole Loans</span>
+      </div>
+      <div class="methodology">
+        Property Value = UPB ÷ LTV<br>
+        Cured Recovery = UPB × Recovery %  (borrower resumes paying)<br>
+        Liquidated Recovery = (Property Value × (1 − Haircut)) − (Property Value × Disposition Cost %)<br>
+        Present Value = (Cured + Liquidated) ÷ (1 + Discount Rate)^Years<br>
+        Decision = Present Value vs. Purchase Price
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">LBO Model — Leveraged Buyout Returns</h3>
+        <span class="status done">Built</span>
+      </div>
+      <p class="project-desc">
+        A five-year leveraged buyout model on a hypothetical software company — $150M entry
+        EBITDA at an 8.0x entry multiple, financed at 5.5x leverage. The model builds a full
+        debt paydown schedule (EBITDA growing 6% annually, with 40% of EBITDA converted to
+        free cash flow used to pay down debt each year), then values the exit at the same
+        8.0x multiple to compute sponsor returns. The result — a 2.74x MOIC and roughly a
+        22% IRR — lands squarely in the range real private equity sponsors target, which is
+        a good sanity check that the mechanics are sound, not just internally consistent.
+      </p>
+      <div class="tags">
+        <span class="tag">LBO</span>
+        <span class="tag">Debt Schedule</span>
+        <span class="tag">IRR / MOIC</span>
+        <span class="tag">Returns Analysis</span>
+      </div>
+      <div class="methodology">
+        Entry EV = Entry EBITDA × Entry Multiple | Entry Debt = Entry EBITDA × Leverage<br>
+        Entry Sponsor Equity = Entry EV − Entry Debt<br>
+        Each Year: EBITDA compounds at growth rate → FCF = EBITDA × Conversion %<br>
+        Ending Debt = Beginning Debt − FCF (carries forward as next year's Beginning Debt)<br>
+        Exit EV = Year 5 EBITDA × Exit Multiple | Exit Equity = Exit EV − Year 5 Ending Debt<br>
+        MOIC = Exit Equity ÷ Entry Equity | IRR = MOIC^(1/Years) − 1
+      </div>
+
+      <table class="sens-table">
+        <caption>IRR sensitivity — exit multiple × annual EBITDA growth rate</caption>
+        <thead>
+          <tr><th></th><th>2%</th><th>4%</th><th>6%</th><th>8%</th><th>10%</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>6.0x</th><td>4.2%</td><td>8.1%</td><td>11.6%</td><td>14.9%</td><td>18.0%</td></tr>
+          <tr><th>7.0x</th><td>10.7%</td><td>14.2%</td><td>17.5%</td><td>20.6%</td><td>23.5%</td></tr>
+          <tr class="sens-base"><th>8.0x</th><td>16.0%</td><td>19.2%</td><td class="sens-hit">22.4%</td><td>25.3%</td><td>28.2%</td></tr>
+          <tr><th>9.0x</th><td>20.4%</td><td>23.5%</td><td>26.6%</td><td>29.5%</td><td>32.3%</td></tr>
+          <tr><th>10.0x</th><td>24.3%</td><td>27.3%</td><td>30.3%</td><td>33.1%</td><td>35.9%</td></tr>
+        </tbody>
+      </table>
+      <p class="sens-note">
+        Highlighted cell is the base case. Returns are more sensitive to the exit multiple than
+        to the growth assumption — moving exit from 6.0x to 10.0x (at 6% growth) swings IRR by
+        ~19 points, versus ~14 points from the full growth range at a fixed 6.0x exit. Even the
+        downside corner still returns capital, showing the debt paydown provides real cushion.
+      </p>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">Apple Inc. (AAPL) — DCF Valuation</h3>
+        <span class="status done">Built</span>
+      </div>
+      <p class="project-desc">
+        A five-year discounted cash flow model built on Apple's FY2025 financials — revenue
+        growth decelerating from 7.0% to 4.5%, FCF margin expanding from 24.0% to 25.0% as
+        Services mix grows, and a WACC derived from CAPM blended with Apple's actual capital
+        structure. The model implies a fair value well below the current trading price,
+        which is a genuinely useful result in itself — it shows where the market's
+        assumptions (AI-driven growth, continued buybacks reducing share count, multiple
+        expansion) diverge from a conservative, organic-growth-only DCF, rather than forcing
+        the model to match the stock price.
+      </p>
+      <div class="tags">
+        <span class="tag">DCF</span>
+        <span class="tag">WACC / CAPM</span>
+        <span class="tag">Terminal Value</span>
+        <span class="tag">Equity Valuation</span>
+      </div>
+      <div class="methodology">
+        WACC = (Wₑ × Cost of Equity) + (W_d × After-Tax Cost of Debt)<br>
+        Cost of Equity = Risk-Free Rate + Beta × Equity Risk Premium<br>
+        FCF = Revenue × FCF Margin, projected FY26–FY30<br>
+        Terminal Value = Terminal FCF × (1 + g) ÷ (WACC − g)<br>
+        Equity Value = ΣPV(FCF) + PV(Terminal Value) − Net Debt<br>
+        Implied Share Price = Equity Value ÷ Shares Outstanding
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Charlie Hodges · <a href="mailto:hodgescharlie0@gmail.com">hodgescharlie0@gmail.com</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>

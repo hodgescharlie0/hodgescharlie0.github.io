@@ -4,7 +4,7 @@ Excel models I built to learn how different parts of finance work.
 All data is fictional or illustrative.
 
 ## Credit and asset-backed finance
-- **Borrowing_Base_Model.xlsx:** Borrowing base model for an asset-backed facility.
+- **Borrowing Base Model.xlsx:** Borrowing base model for an asset-backed facility.
   Flags eligible loans, applies a concentration cap and advance rate, tests delinquency
   covenants (Pass / Watch / Breach), and stress-tests the pool to find where covenants
   breach (about 0.3% stress) and where the borrower goes over-advanced (about 5.7%).
